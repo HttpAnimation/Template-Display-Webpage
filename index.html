@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pages2Github</title>
+    <title>Template-Display-Webpage</title>
     <style>
         body {
             background-color: #000;
@@ -19,22 +19,60 @@
         iframe {
             flex: 1;
             border: none;
+            height: calc(100vh - 60px); /* Adjust the height as needed */
         }
 
         #home-button {
             text-align: center;
-            padding: 10px;
+            padding: 2px;
             background-color: #333;
             position: fixed;
             bottom: 0;
             width: 100%;
+            z-index: 1; /* Set a higher z-index value */
+        }
+
+        #toggle-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <iframe src="https://httpanimation.github.io/EXP---Dark-Mode/" frameborder="0"></iframe>
+    <iframe src="https://httpanimation.github.io/EXP---Dark-Mode/" frameborder="0" id="myIframe"></iframe>
     <div id="home-button">
-        <a href="../../index.html" style="text-decoration: none; color: #000000;">Home</a>
+        <a href="../index.html" style="text-decoration: none; color: #fff;"><h1>Home</h1></a>
     </div>
+    
+    <button id="toggle-button">Toggle Home</button>
+
+    <script>
+        var homeButton = document.getElementById('home-button');
+        var toggleButton = document.getElementById('toggle-button');
+        var isHomeButtonVisible = true;
+
+        toggleButton.addEventListener('click', function() {
+            if (isHomeButtonVisible) {
+                homeButton.style.display = 'none';
+            } else {
+                homeButton.style.display = 'block'; // or 'inline' depending on your desired display type
+            }
+            isHomeButtonVisible = !isHomeButtonVisible;
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key.toLowerCase() === 'f') {
+                toggleButton.click(); // Trigger the click event on the toggle button when "F" is pressed
+            }
+        });
+    </script>
 </body>
 </html>
